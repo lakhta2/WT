@@ -68,6 +68,7 @@ namespace WatchTogetherApi
 
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<IIndexRepository, IndexRepository>();
+            builder.Services.AddScoped<IIndexService, IndexService>();
             builder.Services.AddScoped<IUserService, UserService>();
             
 
