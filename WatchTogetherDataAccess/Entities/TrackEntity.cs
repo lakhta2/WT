@@ -14,8 +14,8 @@ namespace WatchTogetherDataAccess.Entities
         public string? Title { get; set; }
         public string? Artist { get; set; }
         public string? Album { get; set; }
-        public Guid AlbumId { get; set; }
-        public AlbumEntity? AlbumRefference { get; set; }
+        public Guid? AlbumId { get; set; }
+        public AlbumEntity? AlbumReference { get; set; }
         public Guid? AuthorId { get; set; }
         public UserEntity? Author { get; set; }
         public DateTime RealeseDate { get; set; }

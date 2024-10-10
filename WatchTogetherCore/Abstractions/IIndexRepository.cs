@@ -20,6 +20,14 @@ namespace WatchTogetherDataAccess.Repositories
 
         public Task<List<Translation>> GetTranslationsByUserNameAsync(string name, int page, int pageSize);
 
+
+        public Task AddUserToCurrentBroadcasters(Guid userId);
+        public Task RemoveFromCurrentBroadcasters(Guid userId);
+
+        public Task<List<User>> GetUserByFilter(string filter);
+
+
         public Task<User> GetUserByTranslation(Guid translationId);
+        public Task<List<User>> GeAllUsersTestAsync();
     }
 }

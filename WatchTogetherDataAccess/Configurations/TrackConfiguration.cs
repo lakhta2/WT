@@ -20,7 +20,7 @@ namespace WatchTogetherDataAccess.Configurations
                 .WithMany(u => u.Tracks);
 
             builder
-                .HasOne(t => t.AlbumRefference)
+                .HasOne(t => t.AlbumReference)
                 .WithMany(a => a.Tracks);
         }
     }

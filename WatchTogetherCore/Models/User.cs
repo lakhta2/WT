@@ -9,7 +9,7 @@ using WatchTogetherDataAccess.Repositories;
 
 namespace WatchTogetherCore.Models
 {
-    public class User : IdentityUser<Guid>
+    public class User
     {
         public const int MAX_USERNAME_LENGHT = 250;
 
@@ -19,16 +19,16 @@ namespace WatchTogetherCore.Models
         {
             Id = id;
             UserName = userName;
-            Email = email;
-            PasswordHash = password_hash;
+            //Email = email;
+            //PasswordHash = password_hash;
             Description = description;
             Hours = hours;
         }
         private User(string userName, string email, string password_hash)
         {
             UserName = userName;
-            Email = email;
-            PasswordHash = password_hash;
+            //Email = email;
+            //PasswordHash = password_hash;
         }
         private User(Guid id, string userName, string description, decimal hours)
         {
@@ -37,10 +37,10 @@ namespace WatchTogetherCore.Models
             Description = description;
             Hours = hours;
         }
-        public new Guid Id { get; }
-        //public new string UserName { get; private set; } = string.Empty;
+        public Guid Id { get; }
+        public string UserName { get; private set; } //= string.Empty;
         //public new string Email { get; private set;  } = string.Empty;
-        //public new string PasswordHash { get; private set; } = string.Empty;
+        //public new string PasswordHash { get; } = string.Empty;
         public List<Album> Albums { get; set; } = [];
         public List<Track> Tracks { get; set; } = [];
         public List<Translation> Translations { get; set; } = [];

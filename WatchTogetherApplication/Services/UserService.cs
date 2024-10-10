@@ -37,11 +37,11 @@ namespace WatchTogetherApplication.Services
         public async Task<string> Login(string email, string password)
         {
             var user = await _userRepository.GetByEmail(email);
-            var result = _passwordHasher.Verify(password, user.PasswordHash);
-            if (result == false)
-            {
-                throw new Exception("Failed to login");
-            }
+            //var result = _passwordHasher.Verify(password, user.PasswordHash);
+            //if (result == false)
+            //{
+            //    throw new Exception("Failed to login");
+            //}
 
             var token = _jwtProvider.GenerateToken(user); 
 

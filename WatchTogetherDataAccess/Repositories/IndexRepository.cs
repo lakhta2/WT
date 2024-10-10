@@ -177,5 +177,81 @@ namespace WatchTogetherDataAccess.Repositories
             }
             throw new Exception();
         }
+
+        public async Task<List<User>> GeAllUsersTestAsync()
+        {
+            var users = await _context.Users
+                .AsNoTracking()
+                .Take(100)
+                .ToListAsync();
+
+            var mapped = _mapper.Map<List<User>>(users);
+
+            return mapped;
+        }
+
+
+        public async Task AddTrackAsync(Guid id, string title, string artist, string album,
+            Guid albumId, AlbumEntity albumReference, Guid authorId, DateTime releaseDate,
+            string filePath, string coverFilePath, string anotherFilePath)
+        {
+            var trackEntity = new TrackEntity
+            {
+                Id = id,
+                Title = title,
+                Artist = artist,
+                Album = album,
+                AlbumId = albumId,
+                AlbumReference = albumReference,
+                AuthorId = authorId,
+                RealeseDate = releaseDate,
+                FilePath = filePath,
+                CoverFilePath = coverFilePath,
+                AnotherFilePath = anotherFilePath
+            };
+            await _context.AddAsync(trackEntity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task AddAlbumAsync(Guid id, string title, string artist, Guid artistId, 
+            UserEntity author, List<TrackEntity> tracks, DateTime releaseDate, string albumArt)
+        {
+            var albumEntity = new AlbumEntity
+            {
+                Id = id,
+                Title = title,
+                Artist = artist,
+                Author = author,
+                Tracks = tracks,
+                ReleaseDate = releaseDate,
+                AlbumArt = albumArt
+            };
+            await _context.AddAsync(albumEntity);
+            await _context.SaveChangesAsync();
+        }
+        public async Task AddTranslationAsync(Guid id, string title, string description, Guid userId, 
+            UserEntity userEntity, DateTime hadBroadcastedAt)
+        {
+            var translationEntity = new TranslationEntity
+            {
+                Id = id,
+                Title = title,
+                Description = description,
+                UserId = userId,
+                User = userEntity,
+                HadBroadcastedAt = hadBroadcastedAt
+            };
+            await _context.AddAsync(translationEntity);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateTrackAsync(Guid id, string title, string artist, string album,
+            Guid albumId, AlbumEntity albumReference, Guid authorId, DateTime releaseDate,
+            string filePath, string coverFilePath, string anotherFilePath)
+        {
+            await _context.Tracks
+                  .Where(t => t.Id == id)
+                  .ExecuteUpdateAsync(t => t
+                    .SetProperty(p => p.Title, title));
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace WatchTogetherDataAccess.Configurations
 
             builder
                 .HasMany(a => a.Tracks)
-                .WithOne(t => t.AlbumRefference)
+                .WithOne(t => t.AlbumReference)
                 .HasForeignKey(t => t.AlbumId);
         }
     }

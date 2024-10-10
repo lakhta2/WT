@@ -46,8 +46,8 @@ namespace WatchTogetherDataAccess.Repositories
                 UserName = user.UserName,
                 Description = user.Description,
                 Hours = user.Hours,
-                Email = user.Email,
-                PasswordHash = user.PasswordHash
+                //Email = user.Email,
+                //PasswordHash = user.PasswordHash
             };
 
             await _context.Users.AddAsync(userEntity);
